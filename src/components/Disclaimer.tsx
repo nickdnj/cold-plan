@@ -15,12 +15,16 @@ export function Disclaimer() {
             d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
           />
         </svg>
-        <p>
-          <strong>Disclaimer:</strong> This app is for informational purposes
-          only. It is not medical advice. Always consult a healthcare
-          professional before starting any medication. As an Amazon Associate,
-          Cold Plan earns from qualifying purchases.
-        </p>
+        <div>
+          <p>
+            <strong>Disclaimer:</strong> This app is for informational purposes
+            only. It is not medical advice. If you take prescription medications
+            or have chronic health conditions, consult a pharmacist or doctor
+            before combining any OTC drugs. Always read the label on your
+            specific product before taking it. As an Amazon Associate, Cold Plan
+            earns from qualifying purchases.
+          </p>
+        </div>
       </div>
     </div>
   );
