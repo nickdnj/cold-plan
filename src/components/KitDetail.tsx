@@ -230,6 +230,36 @@ export function KitDetail({ kitId, onBack }: Props) {
         </div>
       </div>
 
+      {/* Kit Accessories */}
+      {kit.accessories.length > 0 && (
+        <div className="mb-6">
+          <h3 className="text-lg font-bold text-gray-900 mb-1">Complete Your Kit</h3>
+          <p className="text-sm text-gray-500 mb-3">Recommended accessories to go with your meds.</p>
+          <div className="space-y-2">
+            {kit.accessories.map((acc) => (
+              <a
+                key={acc.asin}
+                href={`https://www.amazon.com/dp/${acc.asin}?tag=${AMAZON_AFFILIATE_TAG}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => handleAmazonClick(acc.asin, acc.name)}
+                className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 bg-white hover:border-[#FF9900] hover:shadow-md transition-all group"
+              >
+                <span className="text-2xl shrink-0">{acc.icon}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="font-semibold text-gray-900 text-sm group-hover:text-[#e88b00] transition-colors">{acc.name}</div>
+                  <p className="text-xs text-gray-500">{acc.description}</p>
+                </div>
+                <div className="text-right shrink-0">
+                  <div className="text-sm font-bold text-gray-900">${acc.priceRange[0]}&ndash;{acc.priceRange[1]}</div>
+                  <div className="text-[10px] text-[#FF9900] font-bold">Buy on Amazon</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Kit total + buy all */}
       <div className={`mb-6 p-5 rounded-2xl bg-gradient-to-r ${style.gradient} border-2 ${style.border}`}>
         <div className="flex items-center justify-between mb-4">

@@ -171,6 +171,14 @@ export interface KitDrug {
   asin?: string;
 }
 
+export interface KitAccessory {
+  name: string;
+  description: string;
+  icon: string;
+  asin: string;
+  priceRange: [number, number];
+}
+
 export interface Kit {
   id: KitId;
   name: string;
@@ -180,6 +188,7 @@ export interface Kit {
   color: string;
   ageGroup: AgeGroup;
   drugs: KitDrug[];
+  accessories: KitAccessory[];
   /** Pro tips specific to this kit */
   tips: string[];
 }

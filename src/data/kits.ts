@@ -92,6 +92,11 @@ export const kits: Kit[] = [
         asin: 'B0937TMQGV',
       },
     ],
+    accessories: [
+      { name: 'AM/PM Weekly Pill Organizer', description: 'EZY DOSE 7-day organizer with pop-out AM/PM compartments', icon: '💊', asin: 'B001THDDFC', priceRange: [5, 7] },
+      { name: 'Digital Thermometer', description: 'Boncare 10-second oral thermometer with fever alarm', icon: '🌡️', asin: 'B08B7V2RG3', priceRange: [7, 9] },
+      { name: 'NeilMed Sinus Rinse Kit', description: 'Saline nasal irrigation — drug-free congestion relief', icon: '💧', asin: 'B000RJGB5C', priceRange: [10, 13] },
+    ],
     tips: [
       'Store in a cool, dry place — a bathroom cabinet with a shower gets too humid.',
       'Check expiration dates once a year. Most OTC drugs last 2-3 years sealed.',
@@ -166,6 +171,11 @@ export const kits: Kit[] = [
         amazonSearch: 'menthol cough drops individually wrapped',
         asin: 'B0937TMQGV',
       },
+    ],
+    accessories: [
+      { name: 'Travel Pill Case', description: 'Holii 8-compartment portable case — fits in a pocket', icon: '👝', asin: 'B07ZNWH48K', priceRange: [7, 9] },
+      { name: 'Pocket Tissues (8-pack)', description: 'Kleenex On-The-Go travel packs', icon: '🤧', asin: 'B00706W9EC', priceRange: [5, 7] },
+      { name: 'Digital Thermometer', description: 'Boncare 10-second oral thermometer with fever alarm', icon: '🌡️', asin: 'B08B7V2RG3', priceRange: [7, 9] },
     ],
     tips: [
       'TSA: OTC pills in carry-on are fine. No liquid limits for solid tablets/capsules.',
@@ -242,6 +252,11 @@ export const kits: Kit[] = [
         asin: 'B0937TMQGV',
       },
     ],
+    accessories: [
+      { name: 'AM/PM Weekly Pill Organizer', description: 'EZY DOSE 7-day organizer with pop-out AM/PM compartments', icon: '💊', asin: 'B001THDDFC', priceRange: [5, 7] },
+      { name: 'Pocket Tissues (8-pack)', description: 'Kleenex On-The-Go travel packs for class and the dorm', icon: '🤧', asin: 'B00706W9EC', priceRange: [5, 7] },
+      { name: 'Digital Thermometer', description: 'Boncare 10-second oral thermometer — know when to go to health services', icon: '🌡️', asin: 'B08B7V2RG3', priceRange: [7, 9] },
+    ],
     tips: [
       'Dorm tip: Keep the kit in a shoebox on a shelf, not buried in a closet.',
       'Print the AM/PM guide and tape it inside the box lid.',
@@ -303,6 +318,10 @@ export const kits: Kit[] = [
         amazonSearch: 'menthol cough drops individually wrapped',
         asin: 'B0937TMQGV',
       },
+    ],
+    accessories: [
+      { name: 'Travel Pill Case', description: 'Holii 8-compartment case — fits in a desk drawer or bag', icon: '👝', asin: 'B07ZNWH48K', priceRange: [7, 9] },
+      { name: 'Pocket Tissues (8-pack)', description: 'Kleenex On-The-Go packs for your desk', icon: '🤧', asin: 'B00706W9EC', priceRange: [5, 7] },
     ],
     tips: [
       'No drowsy drugs — DXM and diphenhydramine left out on purpose.',
