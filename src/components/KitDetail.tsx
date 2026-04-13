@@ -137,68 +137,89 @@ export function KitDetail({ kitId, onBack }: Props) {
         </div>
       </div>
 
-      {/* Drug list with Amazon links */}
+      {/* Shopping list with direct Amazon links */}
       <div className="mb-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-3">What's In The Kit</h3>
+        <h3 className="text-lg font-bold text-gray-900 mb-1">Shopping List</h3>
+        <p className="text-sm text-gray-500 mb-3">Each link goes directly to the product on Amazon.</p>
         <div className="space-y-3">
-          {kitData.items.map((item) => (
-            <div
-              key={item.drugId}
-              className="p-4 rounded-xl border border-gray-200 bg-white"
-            >
-              <div className="flex items-start justify-between gap-3 mb-2">
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="font-semibold text-gray-900">
-                      {item.price?.label || item.drug?.genericName || item.drugId}
-                    </span>
-                    <span
-                      className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
-                        item.amPm === 'am'
-                          ? 'bg-amber-100 text-amber-700'
-                          : item.amPm === 'pm'
-                            ? 'bg-indigo-100 text-indigo-700'
-                            : 'bg-gray-100 text-gray-500'
-                      }`}
-                    >
-                      {item.amPm === 'am' ? 'AM' : item.amPm === 'pm' ? 'PM' : 'AM/PM'}
-                    </span>
-                  </div>
-                  <p className="text-xs text-gray-500 mb-1">{item.role}</p>
-                  {item.dose && (
-                    <p className="text-xs text-gray-400">
-                      {item.dose.amount} &middot; {item.dose.frequency} &middot; Max: {item.dose.maxDaily}/day
-                    </p>
-                  )}
-                </div>
-                <div className="text-right shrink-0">
-                  {item.price && (
-                    <>
-                      <div className="text-sm font-bold text-gray-900">
-                        ${item.price.bulkPrice[0]}&ndash;${item.price.bulkPrice[1]}
-                      </div>
-                      <div className="text-[10px] text-gray-400">
-                        {item.price.bulkCount} {item.price.form}s &middot; {formatPrice(item.price.bulkPrice[0] / item.price.bulkCount)} each
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
+          {kitData.items.map((item) => {
+            const hasDirectLink = !!item.asin;
+            const isPharmacyOnly = item.drugId === 'pseudoephedrine';
 
-              <a
-                href={item.amazonUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#FF9900] hover:bg-[#e88b00] text-white text-xs font-bold transition-colors"
+            return (
+              <div
+                key={item.drugId}
+                className="rounded-xl border border-gray-200 bg-white overflow-hidden"
               >
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M.045 18.02c.072-.116.187-.124.348-.022 2.344 1.47 4.882 2.204 7.615 2.204 1.86 0 3.681-.337 5.465-1.012.254-.09.468-.166.643-.224.19-.064.332.024.428.266.095.24.038.44-.174.6-.942.69-2.02 1.24-3.237 1.647C9.905 21.96 8.676 22.18 7.435 22.18c-2.873 0-5.36-.87-7.467-2.6-.073-.06-.073-.13.077-.56z"/>
-                  <path d="M6.394 14.736c0 .752.186 1.395.56 1.927.373.533.88.83 1.52.892.512.048.98.07 1.404.07.94 0 1.63-.116 2.07-.348.44-.232.66-.636.66-1.212 0-.454-.166-.81-.498-1.07-.332-.258-.896-.478-1.692-.658l-1.373-.31c-1.153-.266-1.97-.608-2.45-1.026-.48-.418-.72-1.028-.72-1.83 0-.974.364-1.738 1.093-2.29.728-.554 1.678-.83 2.85-.83.756 0 1.46.094 2.11.28.65.188 1.08.38 1.29.574.21.195.314.47.314.826 0 .534-.17.802-.51.802-.17 0-.45-.09-.84-.272-.73-.332-1.49-.498-2.28-.498-.634 0-1.136.142-1.508.424-.37.283-.557.68-.557 1.19 0 .404.156.73.47.974.312.246.87.456 1.674.632l1.316.294c1.165.262 2.012.626 2.54 1.092.528.466.792 1.11.792 1.93 0 1.038-.396 1.842-1.19 2.41-.794.57-1.862.854-3.203.854-.704 0-1.384-.082-2.04-.248-.655-.166-1.13-.384-1.425-.654-.296-.27-.444-.63-.444-1.082 0-.26.058-.46.175-.596.116-.137.268-.206.456-.206.188 0 .452.1.792.3.632.362 1.37.544 2.213.544z"/>
-                </svg>
-                Find on Amazon
-              </a>
-            </div>
-          ))}
+                <div className="p-4">
+                  <div className="flex items-start justify-between gap-3 mb-1">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <span className="font-bold text-gray-900">
+                          {item.price?.label || item.drug?.genericName || item.drugId}
+                        </span>
+                        <span
+                          className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
+                            item.amPm === 'am'
+                              ? 'bg-amber-100 text-amber-700'
+                              : item.amPm === 'pm'
+                                ? 'bg-indigo-100 text-indigo-700'
+                                : 'bg-gray-100 text-gray-500'
+                          }`}
+                        >
+                          {item.amPm === 'am' ? 'AM' : item.amPm === 'pm' ? 'PM' : 'AM/PM'}
+                        </span>
+                      </div>
+                      {item.drug?.brandName && (
+                        <p className="text-xs text-blue-600 font-medium mb-1">Brand: {item.drug.brandName}</p>
+                      )}
+                      <p className="text-xs text-gray-500">{item.role}</p>
+                    </div>
+                    <div className="text-right shrink-0">
+                      {item.price && (
+                        <>
+                          <div className="text-lg font-bold text-gray-900">
+                            ${item.price.bulkPrice[0]}&ndash;{item.price.bulkPrice[1]}
+                          </div>
+                          <div className="text-[10px] text-gray-400">
+                            {item.price.bulkCount} {item.price.form}s
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {isPharmacyOnly ? (
+                  <div className="px-4 py-2.5 bg-gray-50 border-t border-gray-100 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+                    </svg>
+                    <span className="text-xs text-gray-500">Buy at any pharmacy counter — no prescription needed, just ask the pharmacist</span>
+                  </div>
+                ) : (
+                  <a
+                    href={item.amazonUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between px-4 py-2.5 bg-[#FF9900] hover:bg-[#e88b00] text-white transition-colors"
+                  >
+                    <span className="text-sm font-bold">
+                      {hasDirectLink ? 'Buy on Amazon' : 'Search on Amazon'}
+                    </span>
+                    <div className="flex items-center gap-1.5">
+                      {hasDirectLink && (
+                        <span className="text-[10px] opacity-80">Direct link</span>
+                      )}
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                      </svg>
+                    </div>
+                  </a>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -232,18 +253,23 @@ export function KitDetail({ kitId, onBack }: Props) {
           </div>
         </div>
 
-        <a
-          href={`https://www.amazon.com/s?k=generic+cold+medicine+bulk&tag=${AMAZON_AFFILIATE_TAG}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-white ${style.btnBg} ${style.btnHover} transition-colors text-lg shadow-lg`}
-        >
-          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M.045 18.02c.072-.116.187-.124.348-.022 2.344 1.47 4.882 2.204 7.615 2.204 1.86 0 3.681-.337 5.465-1.012.254-.09.468-.166.643-.224.19-.064.332.024.428.266.095.24.038.44-.174.6-.942.69-2.02 1.24-3.237 1.647C9.905 21.96 8.676 22.18 7.435 22.18c-2.873 0-5.36-.87-7.467-2.6-.073-.06-.073-.13.077-.56z"/>
-            <path d="M6.394 14.736c0 .752.186 1.395.56 1.927.373.533.88.83 1.52.892.512.048.98.07 1.404.07.94 0 1.63-.116 2.07-.348.44-.232.66-.636.66-1.212 0-.454-.166-.81-.498-1.07-.332-.258-.896-.478-1.692-.658l-1.373-.31c-1.153-.266-1.97-.608-2.45-1.026-.48-.418-.72-1.028-.72-1.83 0-.974.364-1.738 1.093-2.29.728-.554 1.678-.83 2.85-.83.756 0 1.46.094 2.11.28.65.188 1.08.38 1.29.574.21.195.314.47.314.826 0 .534-.17.802-.51.802-.17 0-.45-.09-.84-.272-.73-.332-1.49-.498-2.28-.498-.634 0-1.136.142-1.508.424-.37.283-.557.68-.557 1.19 0 .404.156.73.47.974.312.246.87.456 1.674.632l1.316.294c1.165.262 2.012.626 2.54 1.092.528.466.792 1.11.792 1.93 0 1.038-.396 1.842-1.19 2.41-.794.57-1.862.854-3.203.854-.704 0-1.384-.082-2.04-.248-.655-.166-1.13-.384-1.425-.654-.296-.27-.444-.63-.444-1.082 0-.26.058-.46.175-.596.116-.137.268-.206.456-.206.188 0 .452.1.792.3.632.362 1.37.544 2.213.544z"/>
-          </svg>
-          Shop This Kit on Amazon
-        </a>
+        {/* Quick buy links */}
+        <div className="space-y-1.5">
+          {kitData.items
+            .filter((item) => item.asin)
+            .map((item) => (
+              <a
+                key={item.drugId}
+                href={item.amazonUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#FF9900] hover:bg-[#e88b00] text-white transition-colors text-sm"
+              >
+                <span className="font-medium">{item.price?.label || item.drug?.genericName}</span>
+                <span className="text-xs opacity-80">${item.price?.bulkPrice[0]}&ndash;{item.price?.bulkPrice[1]}</span>
+              </a>
+            ))}
+        </div>
       </div>
 
       {/* AM / PM guide */}
