@@ -60,7 +60,10 @@ function DrugCard({
       `}
     >
       <div className="flex items-start justify-between gap-2 mb-2">
-        <h4 className="font-semibold text-gray-900">{drug.genericName}</h4>
+        <div>
+          <h4 className="font-semibold text-gray-900">{drug.genericName}</h4>
+          <span className="text-xs text-blue-600 font-medium">Brand: {drug.brandName}</span>
+        </div>
         <div className="flex items-center gap-2 shrink-0">
           <DrowsyBadge level={drug.drowsy} />
           {isAlternative && (

@@ -149,7 +149,7 @@ export function Schedule({
             <span
               className="w-2 h-2 rounded-full bg-white/40"
             />
-            {drug.genericName.split(' (')[0]}
+            {drug.genericName} ({drug.brandName})
           </span>
         ))}
       </div>

@@ -262,7 +262,7 @@ export function KitDetail({ kitId, onBack }: Props) {
                   <li key={item.drugId} className="flex items-start gap-1.5">
                     <span className="text-amber-400 mt-0.5 text-xs">&#9679;</span>
                     <span className="text-xs">
-                      <span className="font-medium">{item.drug?.genericName.split(' (')[0]}</span>
+                      <span className="font-medium">{item.drug?.genericName} <span className="font-normal opacity-70">({item.drug?.brandName})</span></span>
                       {item.dose && <span className="text-amber-600"> &middot; {item.dose.amount}</span>}
                     </span>
                   </li>
@@ -281,7 +281,7 @@ export function KitDetail({ kitId, onBack }: Props) {
                   <li key={item.drugId} className="flex items-start gap-1.5">
                     <span className="text-indigo-400 mt-0.5 text-xs">&#9679;</span>
                     <span className="text-xs">
-                      <span className="font-medium">{item.drug?.genericName.split(' (')[0]}</span>
+                      <span className="font-medium">{item.drug?.genericName} <span className="font-normal opacity-70">({item.drug?.brandName})</span></span>
                       {item.dose && <span className="text-indigo-600"> &middot; {item.dose.amount}</span>}
                     </span>
                   </li>

@@ -73,7 +73,7 @@ function IngredientRow({ ing }: { ing: BrandIngredient }) {
       {hasGeneric && generic && (
         <div className="mt-2 p-2 rounded bg-green-50 border border-green-100">
           <p className="text-xs text-green-800">
-            <span className="font-bold">Generic:</span> {generic.genericName} — take {ing.amount} per dose
+            <span className="font-bold">Generic:</span> {generic.genericName} (store brand {generic.brandName}) — take {ing.amount} per dose
           </p>
         </div>
       )}

@@ -4,6 +4,7 @@ export const drugs: Drug[] = [
   {
     id: 'guaifenesin',
     genericName: 'Guaifenesin',
+    brandName: 'Mucinex',
     treats: ['chest-congestion', 'productive-cough'],
     dosing: {
       adult: {
@@ -37,6 +38,7 @@ export const drugs: Drug[] = [
   {
     id: 'dextromethorphan',
     genericName: 'Dextromethorphan (DXM)',
+    brandName: 'Robitussin / Delsym',
     treats: ['dry-cough'],
     dosing: {
       adult: {
@@ -70,6 +72,7 @@ export const drugs: Drug[] = [
   {
     id: 'pseudoephedrine',
     genericName: 'Pseudoephedrine',
+    brandName: 'Sudafed',
     treats: ['nasal-congestion'],
     dosing: {
       adult: {
@@ -104,6 +107,7 @@ export const drugs: Drug[] = [
   {
     id: 'phenylephrine',
     genericName: 'Phenylephrine',
+    brandName: 'Sudafed PE',
     treats: ['nasal-congestion'],
     dosing: {
       adult: {
@@ -137,7 +141,8 @@ export const drugs: Drug[] = [
   },
   {
     id: 'acetaminophen',
-    genericName: 'Acetaminophen (Tylenol)',
+    genericName: 'Acetaminophen',
+    brandName: 'Tylenol',
     treats: ['fever-body-aches', 'headache'],
     dosing: {
       adult: {
@@ -171,7 +176,8 @@ export const drugs: Drug[] = [
   },
   {
     id: 'ibuprofen',
-    genericName: 'Ibuprofen (Advil/Motrin)',
+    genericName: 'Ibuprofen',
+    brandName: 'Advil / Motrin',
     treats: ['fever-body-aches', 'headache'],
     dosing: {
       adult: {
@@ -205,7 +211,8 @@ export const drugs: Drug[] = [
   },
   {
     id: 'diphenhydramine',
-    genericName: 'Diphenhydramine (Benadryl)',
+    genericName: 'Diphenhydramine',
+    brandName: 'Benadryl',
     treats: ['runny-nose', 'sneezing'],
     dosing: {
       adult: {
@@ -236,7 +243,8 @@ export const drugs: Drug[] = [
   },
   {
     id: 'loratadine',
-    genericName: 'Loratadine (Claritin)',
+    genericName: 'Loratadine',
+    brandName: 'Claritin',
     treats: ['runny-nose', 'sneezing'],
     dosing: {
       adult: {
@@ -268,6 +276,7 @@ export const drugs: Drug[] = [
   {
     id: 'menthol-benzocaine',
     genericName: 'Menthol / Benzocaine Lozenges',
+    brandName: 'Chloraseptic / Cepacol',
     treats: ['sore-throat'],
     dosing: {
       adult: {

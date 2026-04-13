@@ -55,6 +55,8 @@ export interface DoseInfo {
 export interface Drug {
   id: DrugId;
   genericName: string;
+  /** The brand name people know (e.g., "Tylenol", "Benadryl") */
+  brandName: string;
   treats: SymptomId[];
   dosing: Record<AgeGroup, DoseInfo | null>;
   drowsy: 'no' | 'mild' | 'yes';
