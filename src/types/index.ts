@@ -1,4 +1,4 @@
-export type AgeGroup = 'adult' | 'child-6-11' | 'child-2-5';
+export type AgeGroup = 'adult';
 
 export type SymptomId =
   | 'dry-cough'
@@ -159,7 +159,7 @@ export interface UserSelections {
   sleepTime: string;
 }
 
-export type KitId = 'home' | 'travel' | 'college' | 'office' | 'kids';
+export type KitId = 'home' | 'travel' | 'college' | 'office';
 
 export interface KitDrug {
   drugId: DrugId;
@@ -186,7 +186,6 @@ export interface Kit {
 
 export type AppStep =
   | 'landing'
-  | 'age'
   | 'symptoms'
   | 'doctor-check'
   | 'recommendations'

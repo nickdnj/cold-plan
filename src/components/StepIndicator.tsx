@@ -1,7 +1,6 @@
 import type { AppStep } from '../types';
 
 const STEPS: { id: AppStep; label: string }[] = [
-  { id: 'age', label: 'Age' },
   { id: 'symptoms', label: 'Symptoms' },
   { id: 'doctor-check', label: 'Safety' },
   { id: 'recommendations', label: 'Drugs' },

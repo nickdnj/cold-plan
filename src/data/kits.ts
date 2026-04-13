@@ -313,62 +313,6 @@ export const kits: Kit[] = [
       'Pseudoephedrine is behind the pharmacy counter — buy it in person, no prescription needed.',
     ],
   },
-  {
-    id: 'kids',
-    name: 'The Kids Kit',
-    tagline: 'Pediatric doses, parent-approved',
-    description:
-      'Child-safe drugs with age-appropriate dosing for ages 6-11. No guessing, no overdosing. Keep alongside the Home Kit for when the little ones catch something.',
-    icon: '🧒',
-    color: 'pink',
-    ageGroup: 'child-6-11',
-    drugs: [
-      {
-        drugId: 'acetaminophen',
-        role: 'Fever, headache, body aches',
-        amPm: 'both',
-        amazonSearch: 'children acetaminophen chewable tablets 160mg',
-      },
-      {
-        drugId: 'ibuprofen',
-        role: 'Anti-inflammatory (alternate with acetaminophen)',
-        amPm: 'both',
-        amazonSearch: 'children ibuprofen chewable tablets 100mg',
-      },
-      {
-        drugId: 'guaifenesin',
-        role: 'Chest congestion & productive cough',
-        amPm: 'both',
-        amazonSearch: 'children guaifenesin liquid expectorant',
-      },
-      {
-        drugId: 'dextromethorphan',
-        role: 'Dry cough suppression',
-        amPm: 'both',
-        amazonSearch: 'children dextromethorphan cough syrup',
-      },
-      {
-        drugId: 'loratadine',
-        role: 'Runny nose & sneezing (non-drowsy for school)',
-        amPm: 'am',
-        amazonSearch: 'children loratadine 5mg chewable tablets',
-      },
-      {
-        drugId: 'diphenhydramine',
-        role: 'Nighttime runny nose & sneezing + helps sleep',
-        amPm: 'pm',
-        amazonSearch: 'children diphenhydramine liquid allergy',
-      },
-    ],
-    tips: [
-      'ALWAYS use the correct dose for your child\'s age and weight.',
-      'No aspirin for children — it\'s linked to Reye\'s syndrome.',
-      'Children\'s liquid formulations are easier to dose accurately.',
-      'No cough/cold medicines for children under 2 — see a pediatrician.',
-      'Fever over 102F in a child, or any fever in an infant under 3 months → call the doctor.',
-      'Keep medicines locked or out of reach. Child-resistant doesn\'t mean child-proof.',
-    ],
-  },
 ];
 
 export const kitMap = new Map(kits.map((k) => [k.id, k]));

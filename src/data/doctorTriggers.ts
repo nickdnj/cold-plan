@@ -36,9 +36,4 @@ export const doctorTriggers: DoctorTrigger[] = [
     text: 'Confusion or difficulty staying alert',
     severity: 'urgent',
   },
-  {
-    id: 'under-2',
-    text: 'Child under 2 years old with cold symptoms',
-    severity: 'urgent',
-  },
 ];

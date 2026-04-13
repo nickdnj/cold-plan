@@ -88,7 +88,6 @@ export function LandingPage({ onStart, onKits, onBrands, onAbout }: Props) {
             { icon: '✈️', label: 'Travel', action: onKits },
             { icon: '🎓', label: 'College', action: onKits },
             { icon: '💼', label: 'Office', action: onKits },
-            { icon: '🧒', label: 'Kids', action: onKits },
           ].map((kit) => (
             <button
               key={kit.label}

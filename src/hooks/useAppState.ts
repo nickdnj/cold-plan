@@ -2,7 +2,6 @@ import { useState, useCallback, useMemo } from 'react';
 import type {
   AppStep,
   UserSelections,
-  AgeGroup,
   SymptomId,
   DrugId,
   AlternativeGroupId,
@@ -12,7 +11,6 @@ import { getRecommendations, resolveDrugChoices } from '../utils/engine';
 
 const STEP_ORDER: AppStep[] = [
   'landing',
-  'age',
   'symptoms',
   'doctor-check',
   'recommendations',
@@ -24,7 +22,7 @@ export function useAppState() {
   const [step, setStep] = useState<AppStep>('landing');
   const [selectedKit, setSelectedKit] = useState<KitId | null>(null);
   const [selections, setSelections] = useState<UserSelections>({
-    ageGroup: null,
+    ageGroup: 'adult',
     symptoms: [],
     drugChoices: {} as Record<AlternativeGroupId, DrugId | 'both'>,
     wakeTime: '07:00',
@@ -47,17 +45,12 @@ export function useAppState() {
     }
   }, [step]);
 
-  const setAgeGroup = useCallback((ag: AgeGroup) => {
-    setSelections((s) => ({ ...s, ageGroup: ag }));
-  }, []);
-
   const toggleSymptom = useCallback((symptomId: SymptomId) => {
     setSelections((s) => {
       const current = s.symptoms;
       if (current.includes(symptomId)) {
         return { ...s, symptoms: current.filter((id) => id !== symptomId) };
       }
-      // Check for conflicts (dry-cough vs productive-cough)
       let next = [...current, symptomId];
       if (symptomId === 'dry-cough') {
         next = next.filter((id) => id !== 'productive-cough');
@@ -87,9 +80,9 @@ export function useAppState() {
   }, []);
 
   const recommendations = useMemo(() => {
-    if (!selections.ageGroup || selections.symptoms.length === 0) return null;
-    return getRecommendations(selections.symptoms, selections.ageGroup);
-  }, [selections.ageGroup, selections.symptoms]);
+    if (selections.symptoms.length === 0) return null;
+    return getRecommendations(selections.symptoms, 'adult');
+  }, [selections.symptoms]);
 
   const resolvedDrugs = useMemo(() => {
     if (!recommendations) return [];
@@ -103,7 +96,7 @@ export function useAppState() {
 
   const startOver = useCallback(() => {
     setSelections({
-      ageGroup: null,
+      ageGroup: 'adult',
       symptoms: [],
       drugChoices: {} as Record<AlternativeGroupId, DrugId | 'both'>,
       wakeTime: '07:00',
@@ -122,7 +115,6 @@ export function useAppState() {
     goTo,
     goNext,
     goBack,
-    setAgeGroup,
     toggleSymptom,
     setDrugChoice,
     setWakeTime,

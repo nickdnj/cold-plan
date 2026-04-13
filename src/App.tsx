@@ -2,7 +2,6 @@ import { useAppState } from './hooks/useAppState';
 import { Disclaimer } from './components/Disclaimer';
 import { StepIndicator } from './components/StepIndicator';
 import { LandingPage } from './components/LandingPage';
-import { AgeSelector } from './components/AgeSelector';
 import { SymptomSelector } from './components/SymptomSelector';
 import { DoctorCheck } from './components/DoctorCheck';
 import { Recommendations } from './components/Recommendations';
@@ -66,7 +65,7 @@ function App() {
 
         {state.step === 'landing' && (
           <LandingPage
-            onStart={() => state.goTo('age')}
+            onStart={() => state.goTo('symptoms')}
             onKits={() => state.goTo('kits')}
             onBrands={() => state.goTo('brand-lookup')}
             onAbout={() => state.goTo('about')}
@@ -91,14 +90,6 @@ function App() {
           />
         )}
 
-        {state.step === 'age' && (
-          <AgeSelector
-            selected={state.selections.ageGroup}
-            onSelect={state.setAgeGroup}
-            onNext={state.goNext}
-          />
-        )}
-
         {state.step === 'symptoms' && (
           <SymptomSelector
             selected={state.selections.symptoms}
@@ -112,10 +103,10 @@ function App() {
           <DoctorCheck onNext={state.goNext} onBack={state.goBack} />
         )}
 
-        {state.step === 'recommendations' && state.recommendations && state.selections.ageGroup && (
+        {state.step === 'recommendations' && state.recommendations && (
           <Recommendations
             recommendations={state.recommendations}
-            ageGroup={state.selections.ageGroup}
+            ageGroup="adult"
             drugChoices={state.selections.drugChoices}
             onChoose={state.setDrugChoice}
             onNext={state.goNext}
@@ -123,10 +114,10 @@ function App() {
           />
         )}
 
-        {state.step === 'schedule' && state.resolvedDrugs.length > 0 && state.selections.ageGroup && (
+        {state.step === 'schedule' && state.resolvedDrugs.length > 0 && (
           <Schedule
             drugs={state.resolvedDrugs}
-            ageGroup={state.selections.ageGroup}
+            ageGroup="adult"
             wakeTime={state.selections.wakeTime}
             sleepTime={state.selections.sleepTime}
             onWakeTimeChange={state.setWakeTime}
@@ -139,8 +130,6 @@ function App() {
         {state.step === 'brand-lookup' && (
           <BrandLookup
             onBack={() => {
-              // If we came from the symptom flow (have resolved drugs), go back to schedule
-              // Otherwise go back to landing
               if (state.resolvedDrugs.length > 0) {
                 state.goBack();
               } else {
