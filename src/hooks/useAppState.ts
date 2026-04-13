@@ -8,6 +8,7 @@ import type {
   KitId,
 } from '../types';
 import { getRecommendations, resolveDrugChoices } from '../utils/engine';
+import { trackEvent } from '../firebase';
 
 const STEP_ORDER: AppStep[] = [
   'landing',
@@ -29,7 +30,10 @@ export function useAppState() {
     sleepTime: '23:00',
   });
 
-  const goTo = useCallback((s: AppStep) => setStep(s), []);
+  const goTo = useCallback((s: AppStep) => {
+    trackEvent('navigate', { step: s });
+    setStep(s);
+  }, []);
 
   const goNext = useCallback(() => {
     const idx = STEP_ORDER.indexOf(step);

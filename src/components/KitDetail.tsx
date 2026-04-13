@@ -1,8 +1,9 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import type { Kit, KitId, DrugId } from '../types';
 import { kitMap, getAmazonLink, AMAZON_AFFILIATE_TAG } from '../data/kits';
 import { drugMap } from '../data/drugs';
 import { genericPriceMap } from '../data/brands';
+import { trackEvent } from '../firebase';
 
 interface Props {
   kitId: KitId;
@@ -109,8 +110,13 @@ export function KitDetail({ kitId, onBack }: Props) {
     return { items, totalLow, totalHigh, minEpisodes };
   }, [kit]);
 
-  // Build the all-in-one Amazon cart URL (search for multi-item)
-  const allAmazonLinks = kitData.items.map((i) => i.amazonUrl);
+  useEffect(() => {
+    trackEvent('view_kit', { kit_id: kitId, kit_name: kit.name });
+  }, [kitId, kit.name]);
+
+  const handleAmazonClick = (drugId: string, drugName: string) => {
+    trackEvent('amazon_click', { kit_id: kitId, drug_id: drugId, drug_name: drugName });
+  };
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -202,6 +208,7 @@ export function KitDetail({ kitId, onBack }: Props) {
                     href={item.amazonUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleAmazonClick(item.drugId, item.drug?.genericName || item.drugId)}
                     className="flex items-center justify-between px-4 py-2.5 bg-[#FF9900] hover:bg-[#e88b00] text-white transition-colors"
                   >
                     <span className="text-sm font-bold">
@@ -263,6 +270,7 @@ export function KitDetail({ kitId, onBack }: Props) {
                 href={item.amazonUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => handleAmazonClick(item.drugId, item.drug?.genericName || item.drugId)}
                 className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#FF9900] hover:bg-[#e88b00] text-white transition-colors text-sm"
               >
                 <span className="font-medium">{item.price?.label || item.drug?.genericName}</span>

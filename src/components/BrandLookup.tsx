@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import type { BrandProduct, BrandIngredient, DrugId } from '../types';
 import { brandProducts, genericPriceMap } from '../data/brands';
 import { drugMap } from '../data/drugs';
+import { trackEvent } from '../firebase';
 
 /**
  * Calculate how many kit pills to take to match a brand ingredient.
@@ -341,7 +342,7 @@ export function BrandLookup({ onBack, onStartOver }: Props) {
                   return (
                     <button
                       key={product.id}
-                      onClick={() => setSelectedId(product.id)}
+                      onClick={() => { setSelectedId(product.id); trackEvent('view_brand', { brand_id: product.id, brand_name: product.name }); }}
                       className="w-full text-left p-4 rounded-xl border border-gray-200 bg-white hover:border-blue-300 hover:shadow-md transition-all group"
                     >
                       <div className="flex items-start justify-between gap-3">
