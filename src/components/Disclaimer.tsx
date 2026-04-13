@@ -18,7 +18,8 @@ export function Disclaimer() {
         <p>
           <strong>Disclaimer:</strong> This app is for informational purposes
           only. It is not medical advice. Always consult a healthcare
-          professional before starting any medication.
+          professional before starting any medication. As an Amazon Associate,
+          Cold Plan earns from qualifying purchases.
         </p>
       </div>
     </div>
