@@ -1,5 +1,5 @@
 import { useMemo, useEffect } from 'react';
-import type { Kit, KitId, DrugId } from '../types';
+import type { KitId } from '../types';
 import { kitMap, getAmazonLink, AMAZON_AFFILIATE_TAG } from '../data/kits';
 import { drugMap } from '../data/drugs';
 import { genericPriceMap } from '../data/brands';
@@ -71,10 +71,6 @@ const COLOR_STYLES: Record<string, {
     btnHover: 'hover:bg-pink-700',
   },
 };
-
-function formatPrice(n: number): string {
-  return n < 1 ? `${Math.round(n * 100)}¢` : `$${n.toFixed(2)}`;
-}
 
 export function KitDetail({ kitId, onBack }: Props) {
   const kit = kitMap.get(kitId);

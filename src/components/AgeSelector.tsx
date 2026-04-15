@@ -6,7 +6,7 @@ interface Props {
   onNext: () => void;
 }
 
-const AGE_OPTIONS: { id: AgeGroup; label: string; desc: string; icon: string }[] = [
+const AGE_OPTIONS: { id: AgeGroup | string; label: string; desc: string; icon: string }[] = [
   {
     id: 'adult',
     label: 'Adult (12+)',
@@ -41,7 +41,7 @@ export function AgeSelector({ selected, onSelect, onNext }: Props) {
         {AGE_OPTIONS.map((opt) => (
           <button
             key={opt.id}
-            onClick={() => onSelect(opt.id)}
+            onClick={() => onSelect(opt.id as AgeGroup)}
             className={`
               w-full flex items-center gap-4 p-4 rounded-xl border-2 transition-all text-left
               ${

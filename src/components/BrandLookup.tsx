@@ -40,7 +40,7 @@ const TYPE_LABELS: Record<string, { label: string; color: string }> = {
   single: { label: 'Single Drug', color: 'bg-gray-100 text-gray-600' },
 };
 
-const TYPE_ORDER: string[] = ['night', 'pm', 'day', 'combo', 'single'];
+/* TYPE_ORDER reserved for future sorting */
 
 function IngredientRow({ ing }: { ing: BrandIngredient }) {
   const generic = ing.drugId ? drugMap.get(ing.drugId) : null;
